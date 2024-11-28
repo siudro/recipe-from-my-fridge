@@ -4,9 +4,9 @@ from openai import OpenAI
 from PIL import Image
 import io
 
-MODEL = "ft:gpt-4o-2024-08-06:personal:fridgecipev2:AVZtG5yJ"
-# Initialize OpenAI client with your API key
-client = OpenAI(api_key=st.secrets["api_key"])
+MODEL = st.secrets["model"]
+api_key = st.secrets["api_key"]
+client = OpenAI(api_key)
 
 def encode_image(image_bytes):
     return base64.b64encode(image_bytes).decode('utf-8')
@@ -36,7 +36,7 @@ def analyze_image(image_bytes):
     return response.choices[0].message.content
 
 # Set page configuration
-st.set_page_config(page_title="PantryPal", page_icon="🍳", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Fridgecipe", page_icon="🍳", layout="wide", initial_sidebar_state="collapsed")
 
 # Custom CSS for better styling
 st.markdown("""
@@ -59,7 +59,7 @@ st.markdown("""
 # Header
 st.markdown("""
     <div class="header-container">
-        <h1 class="main-title">🍳 PantryPal</h1>
+        <h1 class="main-title">🍳 Fridgecipe</h1>
         <p class="subtitle">Transform your ingredients into delicious recipes with AI</p>
     </div>
     """, unsafe_allow_html=True)
@@ -198,4 +198,3 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 st.markdown('</div>', unsafe_allow_html=True)  # Close the center-content div
-

@@ -6,7 +6,11 @@ import io
 
 MODEL = st.secrets["model"]
 api_key = st.secrets["api_key"]
-client = OpenAI(api_key)
+
+client = OpenAI(
+    api_key=api_key,
+    base_url="https://api.openai.com/v1"
+)
 
 def encode_image(image_bytes):
     return base64.b64encode(image_bytes).decode('utf-8')
@@ -198,3 +202,4 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 st.markdown('</div>', unsafe_allow_html=True)  # Close the center-content div
+
